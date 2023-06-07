@@ -1,0 +1,2 @@
+class SharedVideo < ApplicationRecord
+end

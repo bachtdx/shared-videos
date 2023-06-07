@@ -50,3 +50,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
+gem 'jwt'
+gem 'rack-cors'
+gem 'google-api-client'
+
