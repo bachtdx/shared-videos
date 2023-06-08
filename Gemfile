@@ -53,4 +53,5 @@ end
 gem 'jwt'
 gem 'rack-cors'
 gem 'google-api-client'
+gem 'kaminari'
 

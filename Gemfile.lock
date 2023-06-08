@@ -122,6 +122,18 @@ GEM
     irb (1.7.0)
       reline (>= 0.3.0)
     jwt (2.7.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -232,6 +244,7 @@ DEPENDENCIES
   debug
   google-api-client
   jwt
+  kaminari
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.5)
