@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shared_video: one
+  user: one
+  like: false
+
+two:
+  shared_video: two
+  user: two
+  like: false
