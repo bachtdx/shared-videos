@@ -1,16 +1,14 @@
 # app/services/jwt_service.rb
 class JwtService
-    SECRET_KEY = Rails.application.secrets.secret_key_base
-  
-    def self.encode(payload, exp = 30.minute.from_now)
-      payload[:exp] = exp.to_i
-      p SECRET_KEY
-      JWT.encode(payload, SECRET_KEY)
-    end
-  
-    def self.decode(token)
-      decoded = JWT.decode(token, SECRET_KEY)[0]
-      HashWithIndifferentAccess.new(decoded)
-    end
+  SECRET_KEY = Rails.application.secrets.secret_key_base
+
+  def self.encode(payload, exp = 30.minute.from_now)
+    payload[:exp] = exp.to_i
+    JWT.encode(payload, SECRET_KEY)
   end
-  
+
+  def self.decode(token)
+    decoded = JWT.decode(token, SECRET_KEY)[0]
+    HashWithIndifferentAccess.new(decoded)
+  end
+end
