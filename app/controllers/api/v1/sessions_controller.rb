@@ -12,7 +12,7 @@ class Api::V1::SessionsController < ApplicationController
         render json: { error: 'Invalid email or password' }, status: :unauthorized
       end
     else
-      user = User.new(user_params)
+      user = User.new({ email: params[:email], password: params[:password] })
       if user.save
         token = JwtService.encode({ user_id: user.id })
         session[:user_id] = user.id
