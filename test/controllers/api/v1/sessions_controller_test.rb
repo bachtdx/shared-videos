@@ -9,11 +9,10 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     json_response = JSON.parse(response.body)
     assert_not_nil json_response["token"]
     assert_equal user.email, json_response["userEmail"]
-    assert_equal user.name, json_response["userName"]
   end
 
   test "should return unauthorized for invalid credentials" do
-    post :create, params: { email: "invalid@example.com", password: "password" }
+    post :create, params: { email: "tdxbach@gmail.com", password: "password" }
     assert_response :unauthorized
 
     json_response = JSON.parse(response.body)

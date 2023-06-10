@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   user_id: 1
   video_id: MyString
   video_title: MyString
@@ -10,6 +11,7 @@ one:
   video_dislike: 1
 
 two:
+  id: 2
   user_id: 1
   video_id: MyString
   video_title: MyString

@@ -22,7 +22,7 @@ class Api::V1::VideosControllerTest < ActionController::TestCase
 
   test 'should get index' do
     @request.headers['Authorization'] = "Bearer #{@token}"
-    SharedVideo.delete_all
+    @user.shared_videos.delete_all
     SharedVideo.create!(@video_info)
     get :index, params: { page: 1, per_page: 10 }
 

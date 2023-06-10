@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 100
+  id: 1
   name: bach
   email: tdxbach@gmail.com
   password_digest: $2a$12$BUCaW4n8JuGvcFU8DmLLmO.KVeYBLjWp/31j2fCDP37cMzcf9Ptve
 
 two:
-  id: 101
+  id: 2
   name: MyString
   email: MyString
   password_digest: MyString

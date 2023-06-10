@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  shared_video: one
-  user: one
+  shared_video_id: 1
+  user_id: 1
   like: false
 
 two:
-  shared_video: two
-  user: two
+  shared_video_id: 2
+  user_id: 2
   like: false

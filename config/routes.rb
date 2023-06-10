@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
       post '/refresh_token', to: 'sessions#refresh_token'
+      post '/validation_token', to: 'sessions#validation_token'
 
       resources :videos, only: [:index]
       post '/videos/shared_video', to: 'videos#shared'
