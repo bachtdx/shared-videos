@@ -1,15 +1,26 @@
 class Api::V1::VideosController < ApplicationController
+  before_action :authenticate_request, except: [:index]
   include YoutubeHelper
 
   def index
     page = params[:page] || 1
     per_page = params[:per_page] || 10
 
-    shared_videos = current_user.shared_videos.page(page).per(per_page)
-    total_count = current_user.shared_videos.count
-
+    shared_videos = SharedVideo.includes(:user)
+    total_count = shared_videos.length
+    video_data = shared_videos.map do |video|
+      {
+        id: video.id,
+        video_title: video.video_title,
+        video_embed: video.video_embed,
+        shared_by: video.user.email, # Include the user's email attribute
+        video_like: video.video_like,
+        video_dislike: video.video_dislike,
+        video_description: video.video_description
+      }
+    end
     render json: {
-      shared_videos: shared_videos,
+      shared_videos: video_data,
       total_count: total_count,
       current_page: page,
       per_page: per_page
