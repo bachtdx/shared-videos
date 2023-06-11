@@ -13,7 +13,7 @@ class Api::V1::VideosController < ApplicationController
         id: video.id,
         video_title: video.video_title,
         video_embed: video.video_embed,
-        shared_by: video.user.email,
+        shared_by: video.user&.email,
         video_like: video.video_like,
         video_dislike: video.video_dislike,
         video_description: video.video_description

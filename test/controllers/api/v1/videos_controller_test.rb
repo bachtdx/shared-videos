@@ -23,14 +23,14 @@ class Api::V1::VideosControllerTest < ActionController::TestCase
   test 'should get index' do
     @request.headers['Authorization'] = "Bearer #{@token}"
     @user.shared_videos.delete_all
-    SharedVideo.create!(@video_info)
+    @user.shared_videos.create!(@video_info)
     get :index, params: { page: 1, per_page: 10 }
 
     assert_response :success
     json_response = JSON.parse(response.body)
-    assert_equal 1, json_response['shared_videos'].size
+    assert_equal 3, json_response['shared_videos'].size
     assert_equal @video_info['video_title'], json_response['shared_videos'].first['video_title']
-    assert_equal 1, json_response['total_count']
+    assert_equal 3, json_response['total_count']
     assert_equal '1', json_response['current_page']
     assert_equal '10', json_response['per_page']
   end
