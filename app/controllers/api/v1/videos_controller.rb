@@ -43,9 +43,6 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def notify_shared_video(video_title, shared_by)
-    ActionCable.server.broadcast('NotificationChannel', {
-                                   video_title: video_title,
-                                   shared_by: shared_by
-                                 })
+    NotificationJob.perform_later(video_title, shared_by)
   end
 end
