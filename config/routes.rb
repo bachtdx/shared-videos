@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
       resources :videos, only: [:index]
       post '/videos/shared_video', to: 'videos#shared'
+      post '/videos/like', to: 'videos#like'
+      post '/videos/dislike', to: 'videos#dislike'
     end
   end
 end

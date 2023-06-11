@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_152735) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_100929) do
   create_table "likes", force: :cascade do |t|
     t.integer "shared_video_id", null: false
     t.integer "user_id", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_152735) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_logined"
   end
 
   add_foreign_key "likes", "shared_videos"
