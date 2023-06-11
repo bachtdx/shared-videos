@@ -6,14 +6,14 @@ class Api::V1::VideosController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 10
 
-    shared_videos = SharedVideo.includes(:user)
+    shared_videos = SharedVideo.includes(:user).order(created_at: :desc)
     total_count = shared_videos.length
     video_data = shared_videos.map do |video|
       {
         id: video.id,
         video_title: video.video_title,
         video_embed: video.video_embed,
-        shared_by: video.user.email, # Include the user's email attribute
+        shared_by: video.user.email,
         video_like: video.video_like,
         video_dislike: video.video_dislike,
         video_description: video.video_description
@@ -33,7 +33,7 @@ class Api::V1::VideosController < ApplicationController
     shared_video = current_user.shared_videos.new(video)
 
     if shared_video.save
-      notify_shared_video(shared_video.video_title, current_user.name)
+      notify_shared_video(shared_video.video_title, current_user.email)
       render json: { message: 'Share video successfully' }, status: :created
     else
       render json: { error: shared_video.errors.full_messages }, status: :unprocessable_entity
@@ -43,7 +43,7 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def notify_shared_video(video_title, shared_by)
-    ActionCable.server.broadcast('share_notifications', {
+    ActionCable.server.broadcast('NotificationChannel', {
                                    video_title: video_title,
                                    shared_by: shared_by
                                  })
