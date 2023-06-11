@@ -7,6 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       if user.authenticate(params[:password])
         token = JwtService.encode({ user_id: user.id })
         session[:user_id] = user.id
+        user.update_is_logined(true)
         render json: { token: token, userEmail: user.email }
       else
         render json: { error: 'Invalid email or password' }, status: :unauthorized
@@ -16,6 +17,7 @@ class Api::V1::SessionsController < ApplicationController
       if user.save
         token = JwtService.encode({ user_id: user.id })
         session[:user_id] = user.id
+        user.update_is_logined(true)
         render json: { token: token, userEmail: user.email }
       else
         render json: { error: user.errors.full_messages }, status: :unprocessable_entity
@@ -24,6 +26,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.update_is_logined(false)
     session[:user_id] = nil
     render json: { message: 'Logged out successfully' }
   end

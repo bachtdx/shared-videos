@@ -33,16 +33,41 @@ class Api::V1::VideosController < ApplicationController
     shared_video = current_user.shared_videos.new(video)
 
     if shared_video.save
-      notify_shared_video(shared_video.video_title, current_user.email)
       render json: { message: 'Share video successfully' }, status: :created
     else
       render json: { error: shared_video.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
-  private
+  def like
+    video = ShareVideo.find_by(params[:video_id])
+    if video
+      like = video.likes.new({user_id: current_user.id, like: true})
+      if like.save
+        like_count = video.likes.where(like: true).count
+        dislike_count = video.likes.where(like: false).count
+        render json: { message: 'Like video successfully', like_count: like_count, dislike_count: dislike_count }, status: :created
+      else
+        render json: { error: like.errors.full_messages }, status: :unprocessable
+      end
+    else
+      render json: { error: 'Video not found' }, status: :not_found
+    end
+  end
 
-  def notify_shared_video(video_title, shared_by)
-    NotificationJob.perform_later(video_title, shared_by)
+  def dislike
+    video = ShareVideo.find_by(params[:video_id])
+    if video
+      like = video.likes.new({user_id: current_user.id, like: false})
+      if like.save
+        like_count = video.likes.where(like: true).count
+        dislike_count = video.likes.where(like: false).count
+        render json: { message: 'Dislike video successfully', like_count: like_count, dislike_count: dislike_count }, status: :created
+      else
+        render json: { error: like.errors.full_messages }, status: :unprocessable
+      end
+    else
+      render json: { error: 'Video not found' }, status: :not_found
+    end
   end
 end
