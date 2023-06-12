@@ -27,5 +27,6 @@ module SharedVideos
     config.middleware.use config.session_store, config.session_options
     config.action_cable.allowed_request_origins
     config.action_cable.disable_request_forgery_protection = true
+    config.redis_url = 'redis://localhost:6379/1'
   end
 end
