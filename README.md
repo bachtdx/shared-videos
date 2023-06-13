@@ -18,6 +18,7 @@ application up and running.
     5. Redis: An in-memory data structure store. Redis version 7.0.11
     6. Docker: A platform for containerization. Latest stable version
     7. Docker Compose: A tool for defining and managing multi-container Docker applications. Latest stable version (usually bundled with Docker)
+    8. Google YoutubeApi
 # Installation & Configuration: To install and configure a Ruby on Rails project, follow these step-by-step instructions:
     * There are two common ways to start a BE Shared Videos project: using the built-in Rails server or using Docker.
         1. Starting the Project with the Built-in Rails Server follow the steps below:
